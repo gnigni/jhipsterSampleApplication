@@ -1,0 +1,50 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "mavenModule",
+            "otherEntityName": "mavenModule",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "sonarComponent"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "organization",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "componentId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "componentKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "qualifier",
+            "fieldType": "SonarQualifier",
+            "fieldValues": "BRC,DIR,FIL,TRK,UTS"
+        },
+        {
+            "fieldName": "path",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180412130843",
+    "entityTableName": "sonar_component",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

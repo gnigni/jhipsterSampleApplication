@@ -1,0 +1,56 @@
+
+<div *ngIf="sonarComponent">
+    <h2><span>Sonar Component</span> {{sonarComponent.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Organization</span></dt>
+        <dd>
+            <span>{{sonarComponent.organization}}</span>
+        </dd>
+        <dt><span>Component Id</span></dt>
+        <dd>
+            <span>{{sonarComponent.componentId}}</span>
+        </dd>
+        <dt><span>Component Key</span></dt>
+        <dd>
+            <span>{{sonarComponent.componentKey}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{sonarComponent.name}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{sonarComponent.description}}</span>
+        </dd>
+        <dt><span>Qualifier</span></dt>
+        <dd>
+            <span>{{sonarComponent.qualifier}}</span>
+        </dd>
+        <dt><span>Path</span></dt>
+        <dd>
+            <span>{{sonarComponent.path}}</span>
+        </dd>
+        <dt><span>Maven Module</span></dt>
+        <dd>
+            <div *ngIf="sonarComponent.mavenModule">
+                <a [routerLink]="['/maven-module', sonarComponent.mavenModule?.id]">{{sonarComponent.mavenModule?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sonar-component/'+ sonarComponent.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

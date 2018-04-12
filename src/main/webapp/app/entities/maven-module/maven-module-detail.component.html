@@ -1,0 +1,42 @@
+
+<div *ngIf="mavenModule">
+    <h2><span>Maven Module</span> {{mavenModule.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Packaging</span></dt>
+        <dd>
+            <span>{{mavenModule.packaging}}</span>
+        </dd>
+        <dt><span>Artifact Id</span></dt>
+        <dd>
+            <span>{{mavenModule.artifactId}}</span>
+        </dd>
+        <dt><span>Application</span></dt>
+        <dd>
+            <div *ngIf="mavenModule.application">
+                <a [routerLink]="['/application', mavenModule.application?.id]">{{mavenModule.application?.id}}</a>
+            </div>
+        </dd>
+        <dt><span>Parent</span></dt>
+        <dd>
+            <div *ngIf="mavenModule.parent">
+                <a [routerLink]="['/maven-module', mavenModule.parent?.id]">{{mavenModule.parent?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'maven-module/'+ mavenModule.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

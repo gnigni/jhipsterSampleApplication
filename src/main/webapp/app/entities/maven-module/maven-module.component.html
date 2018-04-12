@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span>Maven Modules</span>
+        <button class="btn btn-primary float-right jh-create-entity create-maven-module" [routerLink]="['/', { outlets: { popup: ['maven-module-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Maven Module
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="mavenModules">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Packaging</span></th>
+            <th><span>Artifact Id</span></th>
+            <th><span>Application</span></th>
+            <th><span>Parent</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let mavenModule of mavenModules ;trackBy: trackId">
+                <td><a [routerLink]="['../maven-module', mavenModule.id ]">{{mavenModule.id}}</a></td>
+                <td>{{mavenModule.packaging}}</td>
+                <td>{{mavenModule.artifactId}}</td>
+                <td>
+                    <div *ngIf="mavenModule.application">
+                        <a [routerLink]="['../application', mavenModule.application?.id ]" >{{mavenModule.application?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="mavenModule.parent">
+                        <a [routerLink]="['../maven-module', mavenModule.parent?.id ]" >{{mavenModule.parent?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../maven-module', mavenModule.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'maven-module/'+ mavenModule.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'maven-module/'+ mavenModule.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

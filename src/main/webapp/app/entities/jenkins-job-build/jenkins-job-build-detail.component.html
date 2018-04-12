@@ -1,0 +1,36 @@
+
+<div *ngIf="jenkinsJobBuild">
+    <h2><span>Jenkins Job Build</span> {{jenkinsJobBuild.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Url</span></dt>
+        <dd>
+            <span>{{jenkinsJobBuild.url}}</span>
+        </dd>
+        <dt><span>State</span></dt>
+        <dd>
+            <span>{{jenkinsJobBuild.state}}</span>
+        </dd>
+        <dt><span>Jenkins Job</span></dt>
+        <dd>
+            <div *ngIf="jenkinsJobBuild.jenkinsJob">
+                <a [routerLink]="['/jenkins-job', jenkinsJobBuild.jenkinsJob?.id]">{{jenkinsJobBuild.jenkinsJob?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'jenkins-job-build/'+ jenkinsJobBuild.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

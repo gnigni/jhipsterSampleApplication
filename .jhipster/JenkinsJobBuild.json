@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "jenkinsJob",
+            "otherEntityName": "jenkinsJob",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "url",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "state",
+            "fieldType": "JenkinsJobBuildState",
+            "fieldValues": "SUCCESS,FAIL,WARN"
+        }
+    ],
+    "changelogDate": "20180412130846",
+    "entityTableName": "jenkins_job_build",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}
