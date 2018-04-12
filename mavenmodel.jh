@@ -1,0 +1,80 @@
+entity Application {
+	codeApplication String,
+    description String
+}
+
+entity MavenModule {
+	packaging MavenPackaging,
+    artifactId String
+}
+
+entity SonarComponent {
+	organization String,
+	componentId String,
+    componentKey String,
+    name String,
+    description String,
+    qualifier SonarQualifier,
+    path String
+}
+
+entity JenkinsFolder {
+	url String
+}
+
+entity JenkinsJob {
+	url String,
+    type JenkinsJobType
+}
+
+entity JenkinsJobBuild {
+	url String,
+    state JenkinsJobBuildState
+}
+
+entity GitRepo {
+	url String
+}
+
+enum SonarQualifier {
+	BRC, DIR, FIL, TRK, UTS
+}
+enum MavenPackaging {
+	POM, JAR, WAR
+}
+
+enum JenkinsJobType {
+	INT_BUILD, INT_DEPLOY, INT_SONAR, REC_BUILD, REC_RELEASE
+}
+
+enum JenkinsJobBuildState {
+	SUCCESS, FAIL, WARN
+}
+
+relationship OneToOne {
+	SonarComponent{mavenModule} to MavenModule
+}
+
+relationship OneToOne {
+	JenkinsFolder{mavenModule} to MavenModule
+}
+
+relationship OneToOne {
+	JenkinsJob{jenkinsFolder} to JenkinsFolder
+}
+
+relationship ManyToOne {
+	JenkinsJobBuild{jenkinsJob} to JenkinsJob
+}
+
+relationship OneToOne {
+	GitRepo{mavenModule} to MavenModule
+}
+
+relationship ManyToOne {
+	MavenModule{parent} to MavenModule
+}
+
+relationship OneToMany {
+	Application{module} to MavenModule
+}
